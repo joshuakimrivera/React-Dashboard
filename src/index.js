@@ -44,9 +44,6 @@ function Plants(props) {
       <div className="card hoverable blue-grey rounded-card">
         <div className="card-content white-text">
           <span className="card-title">{props.name}<a href={props.wiki} target="blank"><Lettuce className="brand-logo right" style={{ width: '60px', paddingBottom: '10px'}} /></a></span>
-          <div className="progress">
-            <div className="indeterminate"></div>
-          </div>
           <div>
             
             <h6>Plant Name: <b>{props.plantName}</b></h6>
