@@ -23,14 +23,18 @@ const Nav = () => {
     <div className="navbar">
       <nav className="blue-grey darken-4 z-depth-0">
         <div className="nav-wrapper">
-          <a href="#" className="brand-logo left">&nbsp;<Logo style={{ width: '60px', paddingTop: '10px' }} /><span className=" hide-on-med-and-down right"
+          <a href="#" className="brand-logo hide-on-med-and-down left">&nbsp;<Logo style={{ width: '60px', paddingTop: '10px' }} /><span className=" hide-on-med-and-down right"
+            style={{ marginBottom: '30px', paddingTop: '10px' }}>
+            &nbsp;&nbsp;ACEPT Dashboard</span>
+          </a>
+          <a href="#" className="brand-logo hide-on-large-only center">&nbsp;<Logo style={{ width: '60px', paddingTop: '10px' }} /><span className="right"
             style={{ marginBottom: '30px', paddingTop: '10px' }}>
             &nbsp;&nbsp;ACEPT Dashboard</span>
           </a>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li><a href="../index.html"><i className="material-icons">add_circle_outline</i></a></li>
-            <li><a href="badges.html"><i className="material-icons">lightbulb_outline</i></a></li>
-            <li><a href="collapsible.html"><i className="material-icons">help_outline</i></a></li>
+            <li><a href="https://gitlab.com/re-thesis"><i className="material-icons" title="Contribute">add_circle_outline</i></a></li>
+            <li><a href="https://gitlab.com/re-thesis"><i className="material-icons" title="Learn More">lightbulb_outline</i></a></li>
+            <li><a href="https://gitlab.com/re-thesis"><i className="material-icons" title="Need Help?">help_outline</i></a></li>
           </ul>
         </div>
       </nav>
@@ -97,25 +101,11 @@ const Logs = () => {
         <div className="card-content white-text">
           <div className="row">
             <div className="col s12 m4 l4">
-              <span className="card-title">URL's Crawled:</span>
-              <h1>45,000</h1>
+              <span className="card-title">Water PH Levels</span>
               <Clock/>
             </div>
+            <HardwareGraphFull className="col s12 m12 l12" id="cpuChart" />
 
-            <div className="col s12 m12 l8">
-              <span className="card-title">Logs</span>
-              <p>Sitemap: https://www.cnn.com/sitemaps/cnn/index.xml <br />
-                Sitemap: https://www.cnn.com/sitemaps/cnn/news.xml <br />
-                Sitemap: https://www.cnn.com/sitemaps/sitemap-section.xml <br />
-                Sitemap: https://www.cnn.com/sitemaps/sitemap-interactive.xml <br />
-                Sitemap: https://www.cnn.com/ampstories/sitemap.xml <br />
-                Sitemap: https://edition.cnn.com/sitemaps/news.xml<br />
-                Disallow: /ads/ <br />
-                Disallow: /aol/<br />
-                Disallow: /audio/<br />
-                Disallow: /beta/<br />
-              </p>
-            </div>
           </div>
         </div>
       </div>
@@ -131,6 +121,20 @@ function HardwareGraph(props) {
         <Line
           data={data}
           height={200}
+          options={{ maintainAspectRatio: false }}
+        />
+      </div>
+    </div>
+  );
+}
+
+function HardwareGraphFull(props) {
+  return (
+    <div className="col s12 m12 l12 row">
+      <div className="col s12">
+        <Line
+          data={data}
+          height={150}
           options={{ maintainAspectRatio: false }}
         />
       </div>
@@ -154,7 +158,7 @@ const HardwareMonitoring = () => {
     <div className="col s12 m12 l12">
       <div className="card blue-grey hoverable rounded-card">
         <div className="card-content white-text">
-          <span className="card-title"><h5><b>Environment:</b><span className="right"><Clock/></span></h5></span>
+          <span className="card-title"><h5>Environment:<span className="right"><Clock/></span></h5></span>
           <div className="row">
             <HardwareGraph name="Temperature" id="cpuChart" />
             <HardwareGraph name="Humidity" id="ramChart" />
@@ -167,7 +171,7 @@ const HardwareMonitoring = () => {
 
 const Monitoring = () => {
   return (
-    <div className="col s12 m8 l10 row">
+    <div className="col s12 m12 l12 row">
       <PlantsMonitoring />
       <HardwareMonitoring />
       <Logs />
@@ -179,7 +183,6 @@ const App = () => {
   return (
     <div className="row">
       <Nav /><br />
-      <SideNav />
       <Monitoring />
     </div>);
 }
