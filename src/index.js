@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'materialize-css'
 import { defaults } from 'react-chartjs-2';
-import { ReactComponent as Logo } from '../src/assets/logo.svg';
+import { ReactComponent as Logo } from '../src/assets/sprout.svg';
 import { ReactComponent as Lettuce } from '../src/assets/lettuce.svg';
 import { Line } from 'react-chartjs-2';
 import Clock from '../src/clock';
@@ -24,8 +24,8 @@ const Nav = () => {
       <nav className="blue-grey darken-4 z-depth-0">
         <div className="nav-wrapper">
           <a href="#" className="brand-logo left">&nbsp;<Logo style={{ width: '60px', paddingTop: '10px' }} /><span className=" hide-on-med-and-down right"
-            style={{ marginBottom: '30px' }}>
-            &nbsp;&nbsp;Dashboard</span>
+            style={{ marginBottom: '30px', paddingTop: '10px' }}>
+            &nbsp;&nbsp;ACEPT Dashboard</span>
           </a>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li><a href="../index.html"><i className="material-icons">add_circle_outline</i></a></li>
@@ -43,16 +43,17 @@ function Plants(props) {
     <div className="col s12 m6 l3">
       <div className="card hoverable blue-grey rounded-card">
         <div className="card-content white-text">
-          <span className="card-title">{props.name}<Lettuce className="brand-logo right" style={{ width: '60px', paddingBottom: '10px'}} /></span>
+          <span className="card-title">{props.name}<a href={props.wiki} target="blank"><Lettuce className="brand-logo right" style={{ width: '60px', paddingBottom: '10px'}} /></a></span>
           <div className="progress">
             <div className="indeterminate"></div>
           </div>
           <div>
             
-            <h6>Plant Name: {props.plantName}</h6>
+            <h6>Plant Name: <b>{props.plantName}</b></h6>
+            <h6>Scientific Name: <b>{props.scientificName}</b></h6>
           </div>
           <span>
-            <h6>Status: {props.status}</h6>
+            <h6>Status: <b>{props.status}</b></h6>
           </span>
         </div>
       </div>
@@ -66,7 +67,7 @@ const SideNav = () => {
     <div className="col s4 m4 l2 hide-on-small-only">
       <div className="card hoverable light-blue darken-1 rounded-card">
         <div className="card-content white-text">
-          <span className="card-title">Dashboard</span>
+          <span className="card-title">ACEPT Dashboard</span>
           <hr style={{ color: 'grey' }} />
           <p><a href="#cpuChart" className="white-text">
             <h6>Enviroment Monitoring</h6>
@@ -84,10 +85,10 @@ const SideNav = () => {
 const PlantsMonitoring = () => {
   return (
     <div>
-      <Plants name="Plant One" plantName="Lettuce"  status="OK"/>
-      <Plants name="Plant Two" plantName="Lettuce"  status="OK"  />
-      <Plants name="Plant Three" plantName="Lettuce"  status="OK"  />
-      <Plants name="Plant Four" plantName="Lettuce"   status="OK"/>
+      <Plants name="Plant One" plantName="Lettuce" scientificName="Lactuca sativa"  wiki="https://en.wikipedia.org/wiki/Lettuce"  status="OK"/>
+      <Plants name="Plant Two" plantName="Lettuce" scientificName="Lactuca sativa"  wiki="https://en.wikipedia.org/wiki/Lettuce"  status="OK"  />
+      <Plants name="Plant Three" plantName="Lettuce" scientificName="Lactuca sativa" wiki="https://en.wikipedia.org/wiki/Lettuce"  status="OK"  />
+      <Plants name="Plant Four" plantName="Lettuce" scientificName="Lactuca sativa"  wiki="https://en.wikipedia.org/wiki/Lettuce"  status="OK"/>
     </div>
   );
 }
@@ -128,7 +129,7 @@ const Logs = () => {
 function HardwareGraph(props) {
   return (
     <div className="col s12 m12 l6 row">
-      <h6>{props.name}</h6>
+      <h6 className="center" style={{paddingBottom: '5px'}}>{props.name}</h6>
       <div className="col s12">
         <Line
           data={data}
@@ -156,7 +157,7 @@ const HardwareMonitoring = () => {
     <div className="col s12 m12 l12">
       <div className="card blue-grey hoverable rounded-card">
         <div className="card-content white-text">
-          <span className="card-title">Environment:</span>
+          <span className="card-title"><h5><b>Environment:</b><span className="right"><Clock/></span></h5></span>
           <div className="row">
             <HardwareGraph name="Temperature" id="cpuChart" />
             <HardwareGraph name="Humidity" id="ramChart" />
