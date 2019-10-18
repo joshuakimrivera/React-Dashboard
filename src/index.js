@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import 'materialize-css'
 import { defaults } from 'react-chartjs-2';
 import { ReactComponent as Logo } from '../src/assets/logo.svg';
+import { ReactComponent as Lettuce } from '../src/assets/lettuce.svg';
 import { Line } from 'react-chartjs-2';
 import Clock from '../src/clock';
 
@@ -22,7 +23,7 @@ const Nav = () => {
     <div className="navbar">
       <nav className="blue-grey darken-4 z-depth-0">
         <div className="nav-wrapper">
-          <a href="#" className="brand-logo left">&nbsp;<Logo style={{ width: '60px', paddingTop: '2px' }} /><span className=" hide-on-med-and-down right"
+          <a href="#" className="brand-logo left">&nbsp;<Logo style={{ width: '60px', paddingTop: '10px' }} /><span className=" hide-on-med-and-down right"
             style={{ marginBottom: '30px' }}>
             &nbsp;&nbsp;Dashboard</span>
           </a>
@@ -37,17 +38,21 @@ const Nav = () => {
   );
 }
 
-function Crawler(props) {
+function Plants(props) {
   return (
     <div className="col s12 m6 l3">
       <div className="card hoverable blue-grey rounded-card">
         <div className="card-content white-text">
-          <span className="card-title">{props.name}<i className="material-icons small right">tag_faces</i></span>
+          <span className="card-title">{props.name}<Lettuce className="brand-logo right" style={{ width: '60px', paddingBottom: '10px'}} /></span>
           <div className="progress">
             <div className="indeterminate"></div>
           </div>
+          <div>
+            
+            <h6>Plant Name: {props.plantName}</h6>
+          </div>
           <span>
-            <h6>Status: Crawling</h6>
+            <h6>Status: {props.status}</h6>
           </span>
         </div>
       </div>
@@ -64,7 +69,7 @@ const SideNav = () => {
           <span className="card-title">Dashboard</span>
           <hr style={{ color: 'grey' }} />
           <p><a href="#cpuChart" className="white-text">
-            <h6>Hardware Monitoring</h6>
+            <h6>Enviroment Monitoring</h6>
           </a></p>
           <p><a href="#" className="white-text">
             <h6>URL Stats</h6>
@@ -76,13 +81,13 @@ const SideNav = () => {
   );
 }
 
-const CrawlerMonitoring = () => {
+const PlantsMonitoring = () => {
   return (
     <div>
-      <Crawler name="Crawler One" />
-      <Crawler name="Crawler Two" />
-      <Crawler name="Crawler Three" />
-      <Crawler name="Crawler Four" />
+      <Plants name="Plant One" plantName="Lettuce"  status="OK"/>
+      <Plants name="Plant Two" plantName="Lettuce"  status="OK"  />
+      <Plants name="Plant Three" plantName="Lettuce"  status="OK"  />
+      <Plants name="Plant Four" plantName="Lettuce"   status="OK"/>
     </div>
   );
 }
@@ -94,7 +99,7 @@ const Logs = () => {
         <div className="card-content white-text">
           <div className="row">
             <div className="col s12 m4 l4">
-              <span className="card-title">URL's Crawled</span>
+              <span className="card-title">URL's Crawled:</span>
               <h1>45,000</h1>
               <Clock/>
             </div>
@@ -151,10 +156,10 @@ const HardwareMonitoring = () => {
     <div className="col s12 m12 l12">
       <div className="card blue-grey hoverable rounded-card">
         <div className="card-content white-text">
-          <span className="card-title">Hardware Monitoring:</span>
+          <span className="card-title">Environment:</span>
           <div className="row">
-            <HardwareGraph name="CPU Utilization" id="cpuChart" />
-            <HardwareGraph name="RAM Utilization" id="ramChart" />
+            <HardwareGraph name="Temperature" id="cpuChart" />
+            <HardwareGraph name="Humidity" id="ramChart" />
           </div>
         </div>
       </div>
@@ -165,7 +170,7 @@ const HardwareMonitoring = () => {
 const Monitoring = () => {
   return (
     <div className="col s12 m8 l10 row">
-      <CrawlerMonitoring />
+      <PlantsMonitoring />
       <HardwareMonitoring />
       <Logs />
     </div>
